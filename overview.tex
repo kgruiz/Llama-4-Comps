@@ -1,0 +1,251 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{longtable}
+
+\begin{document}
+
+\section*{Llama 4 Benchmark and Model Comparison Report}
+
+\bigskip
+
+\section*{Llama 4: Leading intelligence. Unrivaled speed and efficiency.}
+
+The most accessible and scalable generation of Llama is here. Native multimodality, mixture-of-experts models, super long context windows, step changes in performance, and unparalleled efficiency – all in easy-to-deploy sizes custom fit for how you want to use it.
+
+\bigskip
+
+\section*{Model Cards}
+
+\begin{itemize}
+    \item \textbf{Llama 4 Scout} \\
+          A class-leading natively multimodal model that offers superior text and visual intelligence, efficient single H100 GPU performance, and a 10M context window for seamless long document analysis.
+
+    \item \textbf{Llama 4 Maverick} \\
+          An industry-leading multimodal model for image and text understanding that delivers groundbreaking intelligence and fast responses at a low cost.
+
+    \item \textbf{Llama 4 Behemoth Preview} \\
+          An early preview (it’s still training!) of the Llama 4 teacher model used to distill Llama 4 Scout and Llama 4 Maverick.
+\end{itemize}
+
+\bigskip
+
+\section*{Key Features}
+
+\begin{itemize}
+    \item \textbf{Natively Multimodal} \\
+          Llama 4 models leverage early fusion by pre-training on large amounts of unlabeled text and vision tokens, marking a significant step forward from separate, frozen multimodal weights.
+
+    \item \textbf{Advanced Problem Solving} \\
+          Both Llama 4 Scout and Llama 4 Maverick tackle intricate problems, offering intelligent solutions across complex domains.
+
+    \item \textbf{Unparalleled Long Context} \\
+          With Llama 4 Scout supporting up to 10M tokens of context -- the longest available in the industry -- new use cases in memory, personalization, and multimodal applications become possible.
+
+    \item \textbf{Expert Image Grounding} \\
+          These models excel in aligning user prompts with relevant visual concepts, anchoring responses to specific image regions.
+
+    \item \textbf{Multilingual Writing} \\
+          Pre-trained and fine-tuned for robust text understanding across 12 languages, Llama 4 supports global development and deployment.
+\end{itemize}
+
+\bigskip
+
+\section*{Benchmark \& Model Comparison Tables}
+
+\subsection*{Gemini Table}
+
+\begin{center}
+    \small
+    \begin{tabular}{>{\raggedright\arraybackslash}p{4.5cm} >{\raggedright\arraybackslash}p{3cm} >{\raggedright\arraybackslash}p{2.5cm} >{\raggedright\arraybackslash}p{2.5cm} >{\raggedright\arraybackslash}p{3cm} >{\raggedright\arraybackslash}p{3cm} >{\raggedright\arraybackslash}p{2.5cm}}
+        \toprule
+        \textbf{Benchmark}                        & \textbf{Gemini 2.5 Pro} (Experimental 03-25) & \textbf{OpenAI o3-mini} (High) & \textbf{OpenAI GPT-4.5} & \textbf{Claude 3.7 Sonnet} (64k Extended Thinking) & \textbf{Grok 3 Beta} (Extended Thinking) & \textbf{DeepSeek R1} \\
+        \midrule
+        \multicolumn{7}{l}{\textbf{Reasoning \& knowledge}}                                                                                                                                                                                                                        \\[5pt]
+        Humanity's Last Exam (no tools)           & 18.8\%                                       & 14.0\%$^*$                     & 6.4\%                   & 8.9\%                                              & --                                       & 8.6\%$^*$            \\
+        \midrule
+        \multicolumn{7}{l}{\textbf{Science}}                                                                                                                                                                                                                                       \\[5pt]
+        GPQA diamond (single attempt, pass@1)     & 84.0\%                                       & 79.7\%                         & 71.4\%                  & 78.2\%                                             & 80.2\%                                   & 71.5\%               \\
+        GPQA diamond (multiple attempts)          & --                                           & --                             & --                      & \textbf{84.8\%}                                    & \textbf{84.6\%}                          & --                   \\
+        \midrule
+        \multicolumn{7}{l}{\textbf{Mathematics}}                                                                                                                                                                                                                                   \\[5pt]
+        AIME 2025 (single attempt, pass@1)        & \textbf{86.7\%}                              & 86.5\%                         & --                      & 49.5\%                                             & 77.3\%                                   & 70.0\%               \\
+        AIME 2025 (multiple attempts)             & --                                           & --                             & --                      & --                                                 & \textbf{93.3\%}                          & --                   \\
+        AIME 2024 (single attempt, pass@1)        & \textbf{92.0\%}                              & 87.3\%                         & 36.7\%                  & 61.3\%                                             & 83.9\%                                   & 79.8\%               \\
+        AIME 2024 (multiple attempts)             & --                                           & --                             & --                      & \textbf{80.0\%}                                    & \textbf{93.3\%}                          & --                   \\
+        \midrule
+        \multicolumn{7}{l}{\textbf{Code generation}}                                                                                                                                                                                                                               \\[5pt]
+        LiveCodeBench v5 (single attempt, pass@1) & 70.4\%                                       & \textbf{74.1\%}                & --                      & --                                                 & 70.6\%                                   & 64.3\%               \\
+        LiveCodeBench v5 (multiple attempts)      & --                                           & --                             & --                      & --                                                 & \textbf{79.4\%}                          & --                   \\
+        \midrule
+        \multicolumn{7}{l}{\textbf{Code editing}}                                                                                                                                                                                                                                  \\[5pt]
+        Aider Polyglot                            & 74.0\% / 68.6\%                              & 60.4\% (diff)                  & 44.9\% (diff)           & 64.9\% (diff)                                      & --                                       & 56.9\% (diff)        \\
+        \midrule
+        \multicolumn{7}{l}{\textbf{Agentic coding}}                                                                                                                                                                                                                                \\[5pt]
+        SWE-bench verified                        & 63.8\%                                       & 49.3\%                         & 38.0\%                  & \textbf{70.3\%}                                    & --                                       & 49.2\%               \\
+        \midrule
+        \multicolumn{7}{l}{\textbf{Factuality}}                                                                                                                                                                                                                                    \\[5pt]
+        SimpleQA                                  & \textbf{52.9\%}                              & 13.8\%                         & 62.5\%                  & --                                                 & 43.6\%                                   & 30.1\%               \\
+        \midrule
+        \multicolumn{7}{l}{\textbf{Visual reasoning}}                                                                                                                                                                                                                              \\[5pt]
+        MMMU (single attempt)                     & \textbf{81.7\%}                              & No MM support                  & 74.4\%                  & 75.0\%                                             & 76.0\%                                   & No MM support        \\
+        MMMU (multiple attempts)                  & No MM support                                & --                             & --                      & --                                                 & \textbf{78.0\%}                          & No MM support        \\
+        \midrule
+        \multicolumn{7}{l}{\textbf{Image understanding}}                                                                                                                                                                                                                           \\[5pt]
+        Vibe-Eval (Reka)                          & 69.4\%                                       & No MM support                  & --                      & --                                                 & --                                       & No MM support        \\
+        \midrule
+        \multicolumn{7}{l}{\textbf{Long context}}                                                                                                                                                                                                                                  \\[5pt]
+        MRCR (128k average)                       & \textbf{94.5\%}                              & 61.4\%                         & 64.0\%                  & --                                                 & --                                       & --                   \\
+        MRCR (1M pointwise)                       & \textbf{83.1\%}                              & --                             & --                      & --                                                 & --                                       & --                   \\
+        \midrule
+        \multicolumn{7}{l}{\textbf{Multilingual performance}}                                                                                                                                                                                                                      \\[5pt]
+        Global MMLU (Lite)                        & \textbf{89.8\%}                              & --                             & --                      & --                                                 & --                                       & --                   \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\medskip
+
+\textbf{Footnotes:}
+\begin{itemize}
+    \item $^*$ indicates evaluation on \textbf{text problems only} (no images).
+    \item ``diff'' = performance difference from base output after edits (for Aider Polyglot).
+    \item ``pass@1'' = first-attempt success rate (no majority vote).
+\end{itemize}
+
+\medskip
+
+\textbf{Methodology \& Sources:}
+\begin{itemize}
+    \item \textbf{Gemini results:} Run with default sampling (pass@1) using the model-id \texttt{gemini-2.5-pro-exp-03-25} on AI Studio API. Multiple trials are averaged to reduce variance.
+    \item \textbf{Non-Gemini results:} Sourced from providers’ self-reported numbers and official reports.
+    \item \textbf{Result sources:}
+          \begin{itemize}
+              \item Humanity's Last Exam: \url{https://agi.safe.ai/} \textbar{} \url{https://scale.com/leaderboard/humanitys_last_exam}
+              \item AIME 2025: \url{https://matharena.ai/}
+              \item LiveCodeBench: \url{https://livecodebench.github.io/}
+              \item Aider Polyglot: \url{https://aider.chat/docs/leaderboards}
+          \end{itemize}
+\end{itemize}
+
+\bigskip
+
+\subsection*{Llama Table 1}
+
+\begin{center}
+    \small
+    \begin{tabular}{>{\raggedright\arraybackslash}p{4.5cm} >{\raggedright\arraybackslash}p{3cm} >{\raggedright\arraybackslash}p{3cm} >{\raggedright\arraybackslash}p{3cm} >{\raggedright\arraybackslash}p{2.5cm}}
+        \toprule
+        \textbf{Category / Benchmark}          & \textbf{Llama 4 Maverick}   & \textbf{Gemini 2.0 Flash} & \textbf{DeepSeek v3.1}   & \textbf{GPT-4o} \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Inference Cost}}                                                                                                   \\[5pt]
+        Price per 1M Input \& Output tokens    & \textbf{\$0.19--\$0.49$^5$} & \$0.17                    & \$0.48                   & \$4.38          \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Image Reasoning}}                                                                                                  \\[5pt]
+        MMMU                                   & 73.4                        & 71.7                      & (No multimodal support)  & 69.1            \\
+        MathVista                              & 73.7                        & 73.1                      & (No multimodal support)  & 63.8            \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Image Understanding}}                                                                                              \\[5pt]
+        ChartQA                                & \textbf{90.0}               & 88.3                      & --                       & 85.7            \\
+        DocVQA (test)                          & \textbf{94.4}               & --                        & --                       & 92.8            \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Coding}}                                                                                                           \\[5pt]
+        LiveCodeBench (10/01/2024--02/01/2025) & \textbf{43.4}               & 34.5                      & \textbf{45.8/49.2$^2$}   & 32.3$^3$        \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Reasoning \& Knowledge}}                                                                                           \\[5pt]
+        MMLU Pro                               & \textbf{80.5}               & 77.6                      & \textbf{81.2}            & --              \\
+        GPQA Diamond                           & \textbf{69.8}               & 60.1                      & 68.4                     & 53.6            \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Multilingual}}                                                                                                     \\[5pt]
+        Multilingual MMLU                      & \textbf{84.6}               & --                        & --                       & 81.5            \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Long Context}}                                                                                                     \\[5pt]
+        MTOB (half book)                       & \textbf{54.0 / 46.4}        & 48.4 / 39.8$^0$           & (Context window is 128K) & (128K)          \\
+        MTOB (full book)                       & \textbf{50.8 / 46.7}        & 45.5 / 39.6$^1$           & (Context window is 128K) & (128K)          \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\textbf{Footnotes:}
+\begin{enumerate}
+    \item Llama model results are 0-shot with temperature = 0; high-variance benchmarks are averaged over multiple generations.
+    \item For non-Llama models, highest available self-reported eval results are shown from reproducible evaluations.
+    \item Cost estimates for non-Llama models are from Artificial Analysis.
+    \item DeepSeek v3.1’s internal result (45.8) is used as its range is unknown.
+    \item \textbf{\$0.19/1Mtok (3:1 blended)} represents the distributed inference cost estimate for Llama 4 Maverick.
+\end{enumerate}
+
+\bigskip
+
+\subsection*{Llama Table 2}
+
+\begin{center}
+    \small
+    \begin{tabular}{>{\raggedright\arraybackslash}p{4.5cm} >{\raggedright\arraybackslash}p{2.8cm} >{\raggedright\arraybackslash}p{2.8cm} >{\raggedright\arraybackslash}p{2.8cm} >{\raggedright\arraybackslash}p{2.8cm} >{\raggedright\arraybackslash}p{2.8cm} >{\raggedright\arraybackslash}p{2.8cm}}
+        \toprule
+        \textbf{Category / Benchmark}          & \textbf{Llama 4 Scout} & \textbf{Llama 3.3 70B}   & \textbf{Llama 3.1 405B}  & \textbf{Gemma 3 (27B)}   & \textbf{Mistral 3.1 (24B)} & \textbf{Gemini 2.0 Flash-Lite} \\
+        \midrule
+        \multicolumn{7}{l}{\textbf{Image Reasoning}}                                                                                                                                                                   \\[5pt]
+        MMMU                                   & 69.4                   & --                       & --                       & 64.9                     & 62.8                       & 68.6                           \\
+        MathVista                              & 70.7                   & --                       & --                       & 67.6                     & 68.9                       & 57.6                           \\
+        \midrule
+        \multicolumn{7}{l}{\textbf{Image Understanding}}                                                                                                                                                               \\[5pt]
+        ChartQA                                & 88.8                   & No multimodal support    & No multimodal support    & 76.3                     & \textbf{86.2}              & 73.0                           \\
+        DocVQA                                 & \textbf{94.4}          & --                       & --                       & 90.4                     & \textbf{94.1}              & 91.2                           \\
+        \midrule
+        \multicolumn{7}{l}{\textbf{Coding}}                                                                                                                                                                            \\[5pt]
+        LiveCodeBench (10/01/2024--02/01/2025) & 32.8                   & \textbf{33.3}            & 27.7                     & 29.7                     & --                         & 28.9                           \\
+        \midrule
+        \multicolumn{7}{l}{\textbf{Reasoning \& Knowledge}}                                                                                                                                                            \\[5pt]
+        MMLU Pro                               & 74.3                   & 68.9                     & 73.4                     & 67.5                     & 66.8                       & 71.6                           \\
+        GPQA Diamond                           & \textbf{57.2}          & 50.5                     & 49.0                     & 42.4                     & 46.0                       & 51.5                           \\
+        \midrule
+        \multicolumn{7}{l}{\textbf{Long Context}}                                                                                                                                                                      \\[5pt]
+        MTOB (half book)                       & \textbf{42.2 / 36.6}   & (Context window is 128K) & (Context window is 128K) & (Context window is 128K) & (Context window is 128K)   & 42.3 / 35.1$^1$                \\
+        MTOB (full book)                       & \textbf{39.7 / 36.3}   & --                       & --                       & --                       & --                         & 35.1 / 30.0$^2$                \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\textbf{Footnotes:}
+\begin{enumerate}
+    \item Llama model results are reported 0-shot with temperature = 0; averaging is applied for high-variance benchmarks.
+    \item For non-Llama models, results are the highest available self-reported evaluations from reproducible sources.
+\end{enumerate}
+
+\bigskip
+
+\subsection*{Llama Table 3}
+
+\begin{center}
+    \small
+    \begin{tabular}{>{\raggedright\arraybackslash}p{4.5cm} >{\raggedright\arraybackslash}p{3cm} >{\raggedright\arraybackslash}p{3cm} >{\raggedright\arraybackslash}p{3cm} >{\raggedright\arraybackslash}p{2.5cm}}
+        \toprule
+        \textbf{Category / Benchmark}          & \textbf{Llama 4 Behemoth} & \textbf{Claude Sonnet 3.7} & \textbf{Gemini 2.0 Pro} & \textbf{GPT-4.5} \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Coding}}                                                                                                          \\[5pt]
+        LiveCodeBench (10/01/2024--02/01/2025) & \textbf{49.4}             & --                         & 36.0                    & --               \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Reasoning \& Knowledge}}                                                                                          \\[5pt]
+        MATH-500                               & \textbf{95.0}             & 82.2                       & 91.8                    & --               \\
+        MMLU Pro                               & \textbf{82.2}             & --                         & 79.1                    & --               \\
+        GPQA Diamond                           & \textbf{73.7}             & 68.0                       & 64.7                    & 71.4             \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Multilingual}}                                                                                                    \\[5pt]
+        Multilingual MMLU (OpenAI)             & \textbf{85.8}             & 83.2                       & --                      & 85.1             \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Image Reasoning}}                                                                                                 \\[5pt]
+        MMMU                                   & \textbf{76.1}             & 71.8                       & 72.7                    & 74.4             \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\textbf{Footnotes:}
+\begin{enumerate}
+    \item Llama model results represent the current best internal runs.
+    \item For non-Llama models, evaluation results are sourced from reproducible self-reported data.
+\end{enumerate}
+
+\end{document}
