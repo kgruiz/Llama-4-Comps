@@ -1,0 +1,171 @@
+\documentclass[11pt]{article}
+
+% --- Define Large Virtual Page Size ---
+\usepackage[paperwidth=27cm, paperheight=30cm, margin=0.5cm]{geometry}
+
+% --- Essential Packages ---
+\usepackage[T1]{fontenc}          % Font encoding
+\usepackage{lmodern}              % Latin Modern font family
+\usepackage{booktabs}             % High-quality table rules
+\usepackage{tabularx}             % Tables with adjustable 'X' columns
+\usepackage{threeparttable}       % Allows table notes (\tnote)
+\usepackage{graphicx}             % For \rotatebox
+\usepackage{siunitx}              % For number formatting (\num)
+\usepackage{array}                % For advanced column specifications
+\usepackage{microtype}            % Subtle typographic improvements
+\usepackage{url}                  % For typesetting URLs
+\usepackage[dvipsnames]{xcolor}   % Needed for extended color definitions
+
+% --- hyperref should be loaded last ---
+\usepackage[hidelinks, colorlinks=true, linkcolor=blue!60!black, urlcolor=blue!70!black]{hyperref}
+
+% --- Custom Definitions ---
+% Column types
+\newcolumntype{L}{>{\raggedright\arraybackslash}X} % Left-aligned flexible width
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}} % Centered fixed-width
+
+% Model column width (can be slightly wider now)
+\newcommand{\modelcolwidth}{1.8em}
+
+% --- Document Start ---
+\begin{document}
+
+\pagenumbering{gobble}
+
+% --- The Table Environment (No rotation) ---
+\begin{threeparttable}
+    \scriptsize % Use smaller font size for the entire table
+    \setlength{\tabcolsep}{3pt} % Adjust column separation (can be slightly wider)
+
+    % --- The tabularx environment ---
+    % New column order: Benchmark, Llama (5 cols), Gemini (4 cols), OpenAI (2 cols), Others (8 cols)
+    \begin{tabularx}{\linewidth}{@{} L
+        C{\modelcolwidth} C{\modelcolwidth} C{\modelcolwidth} C{\modelcolwidth} C{\modelcolwidth} % Llama group: L4 Behemoth, Llama4 Maverick, Llama4 Scout, Llama 3.1 405B, Llama 3.3 70B
+        C{\modelcolwidth} C{\modelcolwidth} C{\modelcolwidth} C{\modelcolwidth}             % Gemini group: Gemini 2.5 Pro, Gemini 2.0 Pro, Gemini 2.0 Flash, Gemini 2.0 Flash-Lite
+        C{\modelcolwidth} C{\modelcolwidth}                                                 % OpenAI group: GPT-4.5, GPT-4o
+        C{\modelcolwidth} C{\modelcolwidth} C{\modelcolwidth} C{\modelcolwidth} C{\modelcolwidth} C{\modelcolwidth} C{\modelcolwidth} C{\modelcolwidth} % Others group: Claude 3.7, Claude Sonnet 3.7, Grok 3 Beta, DeepSeek R1, DeepSeek v3.1, Gemma 3 (27B), Mistral 3.1 (24B), o3-mini
+        @{}}
+        \toprule
+        % --- Header Row (Bold, Rotated, No Color) ---
+        \bfseries Benchmark / Category &
+        \rotatebox{45}{\bfseries L4 Behemoth} &
+        \rotatebox{45}{\bfseries Llama4 Maverick} &
+        \rotatebox{45}{\bfseries Llama4 Scout} &
+        \rotatebox{45}{\bfseries Llama 3.1 405B} &
+        \rotatebox{45}{\bfseries Llama 3.3 70B} &
+        \rotatebox{45}{\bfseries Gemini 2.5 Pro} &
+        \rotatebox{45}{\bfseries Gemini 2.0 Pro} &
+        \rotatebox{45}{\bfseries Gemini 2.0 Flash} &
+        \rotatebox{45}{\bfseries Gemini 2.0 Flash-Lite} &
+        \rotatebox{45}{\bfseries GPT-4.5} &
+        \rotatebox{45}{\bfseries GPT-4o} &
+        \rotatebox{45}{\bfseries Claude 3.7} &
+        \rotatebox{45}{\bfseries Claude Sonnet 3.7} &
+        \rotatebox{45}{\bfseries Grok 3 Beta} &
+        \rotatebox{45}{\bfseries DeepSeek R1} &
+        \rotatebox{45}{\bfseries DeepSeek v3.1} &
+        \rotatebox{45}{\bfseries Gemma 3 (27B)} &
+        \rotatebox{45}{\bfseries Mistral 3.1 (24B)} &
+        \rotatebox{45}{\bfseries o3-mini} \\
+        \midrule % Separator after header
+
+        % --- Data Rows (Entries reordered based on original columns) ---
+
+        % --- Inference Cost ---
+        % New order: Llama: cols 2,3,4,5,17; Gemini: 6,7,8,9; OpenAI: 12,13; Others: 10,11,14,15,16,18,19,20.
+        \multicolumn{20}{@{} >{\itshape}l}{\rule{0pt}{2.5ex}Inference Cost (\$/1M tokens In/Out)} \\[0.5ex]
+        & {--} & \multicolumn{1}{c}{\bfseries\$\num{0.19}--\num{0.49}\tnote{a}} & {--} & {--} & {--} & {--} & {--} & \multicolumn{1}{c}{\$\num{0.17}} & {--} & {--} & \multicolumn{1}{c}{\$\num{4.38}} & {--} & {--} & {--} & \multicolumn{1}{c}{\$\num{0.48}} & {--} & {--} & {--} & {--} \\
+        \addlinespace
+
+        % --- Reasoning & Knowledge ---
+        \multicolumn{20}{@{} >{\itshape}l}{\rule{0pt}{2.5ex}Reasoning \& Knowledge} \\[0.5ex]
+        Humanity's Last Exam (no tools) & {--} & {--} & {--} & {--} & {--} & 18.8 & {--} & {--} & {--} & 6.4 & {--} & 8.9 & {--} & {--} & 8.6\tnote{b} & {--} & {--} & {--} & 14.0\tnote{b} \\
+        MMLU Pro & \bfseries 82.2 & \bfseries 80.5 & 74.3 & 73.4 & \bfseries 81.2 & {--} & 79.1 & 77.6 & 71.6 & {--} & {--} & {--} & {--} & {--} & {--} & 68.9 & 67.5 & 66.8 & {--} \\
+        \addlinespace
+
+        % --- Science ---
+        \multicolumn{20}{@{} >{\itshape}l}{\rule{0pt}{2.5ex}Science} \\[0.5ex]
+        GPQA diamond (single, pass@1) & \bfseries 73.7 & \bfseries 69.8 & \bfseries 57.2 & 49.0 & 68.4 & 84.0 & 64.7 & 60.1 & 51.5 & 71.4 & 53.6 & 78.2 & 68.0 & 80.2 & 71.5 & \bfseries 90.0 & 42.4 & 46.0 & 79.7 \\
+        GPQA diamond (multiple) & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & \bfseries 84.6 & {--} & {--} & {--} & {--} & {--} & {--} & {--} \\
+        \addlinespace
+
+        % --- Mathematics ---
+        \multicolumn{20}{@{} >{\itshape}l}{\rule{0pt}{2.5ex}Mathematics} \\[0.5ex]
+        AIME 2025 (single, pass@1) & {--} & {--} & {--} & {--} & 86.5 & {--} & {--} & {--} & {--} & {--} & {--} & 49.5 & {--} & 77.3 & 70.0 & {--} & {--} & {--} & 86.7 \\
+        AIME 2025 (multiple) & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & \bfseries 93.3 & {--} & {--} & {--} & {--} & {--} & {--} \\
+        AIME 2024 (single, pass@1) & {--} & {--} & {--} & {--} & 87.3 & {--} & {--} & {--} & {--} & 36.7 & {--} & 61.3 & {--} & 83.9 & 79.8 & {--} & {--} & {--} & 92.0 \\
+        AIME 2024 (multiple) & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & \bfseries 93.3 & {--} & {--} & {--} & {--} & {--} & {--} \\
+        MATH-500 & \bfseries 95.0 & {--} & {--} & {--} & {--} & {--} & 91.8 & {--} & {--} & {--} & {--} & {--} & 82.2 & {--} & {--} & {--} & {--} & {--} & {--} \\
+        \addlinespace
+
+        % --- Code generation / Coding ---
+        \multicolumn{20}{@{} >{\itshape}l}{\rule{0pt}{2.5ex}Code Generation / Coding} \\[0.5ex]
+        LiveCodeBench v5 (single, pass@1) & {--} & {--} & {--} & {--} & \bfseries 74.1 & {--} & {--} & {--} & {--} & {--} & {--} & {--} & 70.4 & {--} & {--} & {--} & {--} & {--} & {--} \\
+        LiveCodeBench v5 (multiple) & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & \bfseries 79.4 & {--} & {--} & {--} & {--} & {--} & {--} \\
+        LiveCodeBench (10/24--02/25) & \bfseries 49.4 & \bfseries 43.4 & 32.8 & 27.7 & \multicolumn{1}{c}{\bfseries 45.8 / 49.2\tnote{c}} & {--} & 36.0 & 34.5 & 28.9 & {--} & 32.3 & {--} & {--} & {--} & \bfseries 33.3 & 29.7 & {--} & {--} \\
+        \addlinespace
+
+        % --- Code editing ---
+        \multicolumn{20}{@{} >{\itshape}l}{\rule{0pt}{2.5ex}Code Editing} \\[0.5ex]
+        Aider Polyglot & {--} & {--} & {--} & {--} & 60.4\tnote{d} & 74.0 / 68.6 & {--} & {--} & {--} & 44.9\tnote{d} & {--} & 64.9\tnote{d} & {--} & {--} & 56.9\tnote{d} & {--} & {--} & {--} & {--} \\
+        \addlinespace
+
+        % --- Agentic coding ---
+        \multicolumn{20}{@{} >{\itshape}l}{\rule{0pt}{2.5ex}Agentic Coding} \\[0.5ex]
+        SWE-bench verified & {--} & {--} & {--} & {--} & 49.3 & 63.8 & {--} & {--} & {--} & 38.0 & {--} & \bfseries 70.3 & {--} & {--} & 49.2 & {--} & {--} & {--} & {--} \\
+        \addlinespace
+
+        % --- Factuality ---
+        \multicolumn{20}{@{} >{\itshape}l}{\rule{0pt}{2.5ex}Factuality} \\[0.5ex]
+        SimpleQA & {--} & {--} & {--} & {--} & 13.8 & \bfseries 52.9 & {--} & {--} & {--} & 62.5 & {--} & {--} & {--} & 43.6 & 30.1 & {--} & {--} & {--} & {--} \\
+        \addlinespace
+
+        % --- Visual reasoning / Image Reasoning ---
+        \multicolumn{20}{@{} >{\itshape}l}{\rule{0pt}{2.5ex}Visual / Image Reasoning} \\[0.5ex]
+        MMMU (single) & \bfseries 76.1 & 73.4 & 69.4 & {--} & {No MM}\tnote{e} & \bfseries 81.7 & 72.7 & 71.7 & 68.6 & 74.4 & 69.1 & 75.0 & 71.8 & {--} & 76.0 & {No MM}\tnote{e} & 64.9 & 62.8 & {No MM}\tnote{e} \\
+        MMMU (multiple) & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & \bfseries 78.0 & {--} & {--} & {--} & {--} & {--} & {--} \\
+        MathVista & {--} & 73.7 & 70.7 & {--} & {--} & {--} & 73.1 & 57.6 & {--} & {--} & {--} & {--} & 70.7 & {No MM}\tnote{e} & {No MM}\tnote{e} & {--} & 67.6 & 68.9 & {--} \\
+        \addlinespace
+
+        % --- Image understanding ---
+        \multicolumn{20}{@{} >{\itshape}l}{\rule{0pt}{2.5ex}Image Understanding} \\[0.5ex]
+        Vibe-Eval (Reka) & {--} & {--} & {--} & {--} & {--} & 69.4 & {--} & {--} & {--} & {--} & {--} & {--} & {No MM}\tnote{e} & {No MM}\tnote{e} & {--} & {--} & {--} & {--} & {No MM}\tnote{e} \\
+        ChartQA & {--} & \bfseries 90.0 & 88.8 & {No MM}\tnote{e} & {--} & {--} & 88.3 & 73.0 & {--} & {--} & {--} & 85.7 & {--} & {--} & {--} & {No MM}\tnote{e} & 76.3 & \bfseries 86.2 & {--} \\
+        DocVQA (test) & {--} & \bfseries 94.4 & \bfseries 94.4 & {No MM}\tnote{e} & {--} & {--} & {--} & 91.2 & {--} & {--} & {--} & 92.8 & {--} & {--} & {--} & {--} & 90.4 & \bfseries 94.1 & {--} \\
+        \addlinespace
+
+        % --- Long context ---
+        \multicolumn{20}{@{} >{\itshape}l}{\rule{0pt}{2.5ex}Long Context} \\[0.5ex]
+        MRCR (128k avg) & {--} & {--} & {--} & {--} & {--} & \bfseries 94.5 & {--} & 61.4 & {--} & {--} & 64.0 & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} \\
+        MRCR (1M pointwise) & {--} & {--} & {--} & {--} & {--} & \bfseries 83.1 & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} \\
+        MTOB (half book) & {--} & \multicolumn{1}{c}{\bfseries 54.0 / 46.4} & \multicolumn{1}{c}{\bfseries 42.2 / 36.6} & {128k}\tnote{f} & {128k}\tnote{f} & {--} & {--} & \multicolumn{1}{c}{48.4 / 39.8} & \multicolumn{1}{c}{42.3 / 35.1} & {--} & {--} & {128k}\tnote{f} & {--} & {--} & {128k}\tnote{f} & {128k}\tnote{f} & {128k}\tnote{f} & {128k}\tnote{f} & {--} \\
+        MTOB (full book) & {--} & \multicolumn{1}{c}{\bfseries 50.8 / 46.7} & \multicolumn{1}{c}{\bfseries 39.7 / 36.3} & {--} & {--} & {--} & {--} & \multicolumn{1}{c}{45.5 / 39.6} & \multicolumn{1}{c}{35.1 / 30.0} & {--} & {--} & {128k}\tnote{f} & {--} & {--} & {128k}\tnote{f} & {--} & {--} & {--} & {--} \\
+        \addlinespace
+
+        % --- Multilingual ---
+        \multicolumn{20}{@{} >{\itshape}l}{\rule{0pt}{2.5ex}Multilingual Performance} \\[0.5ex]
+        Global MMLU (Lite) & {--} & {--} & {--} & {--} & {--} & \bfseries 89.8 & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} \\
+        Multilingual MMLU & {--} & \bfseries 84.6 & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & 81.5 & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} \\
+        Multilingual MMLU (OpenAI) & \bfseries 85.8 & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & 85.1 & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} & {--} \\
+
+        \bottomrule % Final rule at the table bottom
+    \end{tabularx}
+
+    % --- Table Notes Section ---
+    \vspace{1ex} % Add a little space before notes
+    \begin{tablenotes}
+        \sloppy % Allow looser linespacing in notes for better justification
+        \footnotesize % Use footnotesize for notes
+        \item[a] \$0.19/1Mtok (3:1 blended) estimated distributed inference cost (Llama 4 Maverick).
+        \item[b] Text problems only.
+        \item[c] DeepSeek v3.1 internal result (45.8) used as range unknown for LiveCodeBench (10/24--02/25).
+        \item[d] Diff performance (Aider Polyglot).
+        \item[e] No multimodal support reported/applicable. Abbreviated as 'No MM'.
+        \item[f] Context window limits reported result (typically 128k). Abbreviated as '128k'.
+        \item[] \textbf{General Notes:} Scores are self-reported by vendors unless otherwise specified. Bold text (\bfseries) indicates the highest score \textit{in the original source table} for that benchmark row, not necessarily the highest across this combined table. `pass@1`: Single attempt evaluation. `Multiple`: Evaluation using multiple attempts/voting. Gemini 2.5 Pro results used model `gemini-2.5-pro-exp-03-25` with default sampling (pass@1). Llama 4 results (Maverick, Scout) are 0-shot, temp=0, averaged for high-variance benchmarks. Llama 4 Behemoth results are current best internal runs (preview model). Cost estimates for non-Llama models sourced from Artificial Analysis. Non-Gemini/non-Llama results represent the highest self-reported scores found in the source documents. Model names abbreviated in headers for space (L4 = Llama 4, L3.1 = Llama 3.1). `--` indicates data not found in sources.
+        \item[] \textbf{Sources:} Google Gemini (\url{https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/#enhanced-reasoning}), Llama (\url{https://www.llama.com}), SAFE (\url{https://agi.safe.ai/}), Math Arena (\url{https://matharena.ai/}), LiveCodeBench (\url{https://livecodebench.github.io/}), Aider Leaderboard (\url{https://aider.chat/docs/leaderboards}).
+    \end{tablenotes}
+
+\end{threeparttable}
+
+\end{document}
